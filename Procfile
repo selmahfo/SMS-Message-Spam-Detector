@@ -1,1 +1,1 @@
-web: ls; unicorn app:app
+web: unicorn app:app
