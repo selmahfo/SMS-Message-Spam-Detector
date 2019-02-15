@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for,request
+from flask import Flask,render_template,request
 import pandas as pd 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -6,7 +6,6 @@ from sklearn.externals import joblib
 
 
 app = Flask(__name__)
-#app.config['SECRET_KEY'] = "secret"
 
 @app.route('/')
 def home():
@@ -43,18 +42,6 @@ def predict():
 		vect = cv.transform(data).toarray()
 		my_prediction = clf.predict(vect)
 	return render_template('result.html',prediction = my_prediction)
-
-
-# Dummy functions
-
-@app.route('/post', methods=["POST", "GET"])
-def test():
-    if request.method == 'POST':
-
-        data = request.get_json()
-
-        print('Data Received: "{data}"'.format(data=data.get("foo")))
-        return "Request Processed.\n"
 
 if __name__ == '__main__':
 
